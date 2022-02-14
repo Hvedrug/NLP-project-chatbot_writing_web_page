@@ -4,7 +4,6 @@ This chat bot works in python, you can talk with it to create web pages. This is
 
 
 
-
 NLP PROJECT 
 requierement python 3.7.9 or later
 execution : python main.py
@@ -19,25 +18,16 @@ Action recognised :
 	create/make/add an object (paragraph, image, link, ...)
 	create/make/add (open) a div
 	close a div
-
-Action to implement :
-	delet object
-	research object
-	modify object
-	(the three by ID, by objectType and last one)
-	change object order maybe ? 
-
-ideas : 
-	use "make" for modification not creation 
-	implement more objects (navbar, tooltips, ...)
-	change style for a substring of a paragraph
-
-Pb :
-	when modifying paragraph ID error p0 -> 0 but pp0 
-	weird
+	modify/change/find an existing object
+	delete an object
 
 
-test effectués 
+
+
+test tried:
+Giving certain sentences can trigger an answer from the program asking for more details about your request.
+"a > b" means that after saying a you should say b when the program asks for details in order to get the same results.
+
 	metadata > 1 > a title > save > it works
 	metadata > 1 > another title > save > it works
 	metadata > 2 > Clement Guerin > save > it works
@@ -57,32 +47,36 @@ test effectués
 
 	close div > save > it works
 
-	modify last paragraph > blablabla > save > DON'T WORK
-
+	modify last paragraph > blablabla > save > it works
+	modify last title > 1 > myTitle > save > it works
+	modify last image > test.jpg > alt-text > save > it works
+	modify last link > asd > asads > save > it works
 	(same with class:[x1 or x2] but not id:)
 
+	modify class:myClass > save > it works (add some class to the last object)
+
+	add blue paragraph > qwerrty > save > it works
+	add red div > add blue paragraph > eywutr > save > it works
+	add blue text > uydsagcf > save > it works
+
+	add title > 1 > tfe > add text > dft > delete last title > it works
+	add text > fyer > add text > yfeu > delete all > it works
+	(cannot delete last div to avoid because of column and rows handling difficulties)
+
+	add a big title > myTitle > it works
+	add small title > otherTitle > it works
+	add primary title > qwe > add secondary title > fheiw > it works
+
+	using small, quarter, ... for column sizing (need row)
+
+
+
+For more informations, see report.doc
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Original subject:
 
 The user will be able to tell the program to edit the Header and the Body of the html document
 Header :
@@ -103,53 +97,3 @@ A first approach would be to use simple sentences containing the name of the obj
 Then we could try more elaborate sentences with text recognition, trying to understand colors, placement, size, ... using NLTK or TextBlob. I don't know if this would be necessary because there might not be that much vocabulary to handle and hard coding everything might be enough. For example for the size : bigger, smaller, bolder, ...; for the color : red, light red, dark red, blue, ... 
 
 With ID/Class identification we can store the requests in an array and later come back to those elements to modify them. For example "write the title bigger" would make all the h2 in h1, "put the paragraph #p1 in blue" would search for a paragraph with the #p1 ID and change its color for blue, ... 
-
-
-
-
-
-manual placement (bootstrap reminder)
-
-grid:
-class:row and class:col to align elements 
-to select size according to the screen you can use a number between 1 and 12 
-for example class:col-6 will create a div that take half of the screen
-Be sure to close div between two column, or you will create a row inside the column
-
-
-Font usage
-
-you need to get the google font name of the font 
-in metadata select 4 and follow instructions 
-You can only use one font at the moment 
-font to try Sofia, Trirong, Audiowide, Tangerine, Roboto Mono, ...
-
-
-
-
-
-
-
-
-buttons
-gestion rows and cols without saying div
-gestion font not all doc (on/off)
-
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Pricing</a>
-        <a class="nav-link disabled">Disabled</a>
-      </div>
-    </div>
-  </div>
-</nav>
