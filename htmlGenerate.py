@@ -7,19 +7,19 @@ def generateHTML():
 		#print(x[0])
 		#print(data.arrayHTML[x[0]])
 		if data.arrayHTML[x[0]][0] == "p":
-			res += "<p id=\"" +data.arrayHTML[x[0]][1] +"\" class=\"" +data.arrayHTML[x[0]][2] +"\">" +data.arrayHTML[x[0]][3] +"</p>\n"
-		elif data.arrayHTML[x[0]][0] == "opdiv":
-			res += "<div id=\"" +data.arrayHTML[x[0]][1] +"\" class=\"" +data.arrayHTML[x[0]][2] +"\">\n"
+			res += "<p id=\"" +data.arrayHTML[x[0]][1] +"\" class=\"" +data.arrayHTML[x[0]][2].strip() +"\">" +data.arrayHTML[x[0]][3] +"</p>\n"
+		elif data.arrayHTML[x[0]][0] == "div":
+			res += "<div id=\"" +data.arrayHTML[x[0]][1] +"\" class=\"" +data.arrayHTML[x[0]][2].strip() +"\">\n"
 		elif data.arrayHTML[x[0]][0] == "cldiv":
 			res += "</div>\n"
 		elif data.arrayHTML[x[0]][0] == "h":
-			res += "<h" +data.arrayHTML[x[0]][3] +" id=\"" +data.arrayHTML[x[0]][1] +"\" class=\"" +data.arrayHTML[x[0]][2] +"\">" +data.arrayHTML[x[0]][4] +"</h" +data.arrayHTML[x[0]][3] +">\n"
+			res += "<h" +data.arrayHTML[x[0]][3] +" id=\"" +data.arrayHTML[x[0]][1] +"\" class=\"" +data.arrayHTML[x[0]][2].strip() +"\">" +data.arrayHTML[x[0]][4] +"</h" +data.arrayHTML[x[0]][3] +">\n"
 		elif data.arrayHTML[x[0]][0] == "err":
 			res += "<!-- " +data.arrayHTML[x[0]][1] +"-->\n"
 		elif data.arrayHTML[x[0]][0] == "a":
-			res += "<a id=\"" +data.arrayHTML[x[0]][1] +"\" class=\"" +data.arrayHTML[x[0]][2] +"\" href=\"" +data.arrayHTML[x[0]][3] +"\">" +data.arrayHTML[x[0]][4] +"</a>\n"
+			res += "<a id=\"" +data.arrayHTML[x[0]][1] +"\" class=\"" +data.arrayHTML[x[0]][2].strip() +"\" href=\"" +data.arrayHTML[x[0]][3] +"\">" +data.arrayHTML[x[0]][4] +"</a>\n"
 		elif data.arrayHTML[x[0]][0] == "img":
-			res += "<img id=\"" +data.arrayHTML[x[0]][1] +"\" class=\"" +data.arrayHTML[x[0]][2] +"\" src=\"" +data.arrayHTML[x[0]][3] +"\" alt=\"" +data.arrayHTML[x[0]][4] +"\">\n"
+			res += "<img id=\"" +data.arrayHTML[x[0]][1] +"\" class=\"" +data.arrayHTML[x[0]][2].strip() +"\" src=\"" +data.arrayHTML[x[0]][3] +"\" alt=\"" +data.arrayHTML[x[0]][4] +"\">\n"
 	for i in range(data.countOpenDiv):
 		res += "</div>\n"
 	res+=htmlObject.endHTML()
@@ -36,12 +36,13 @@ def addItemToDict(myItem):
 		data.listID.append(list(myItem.keys()))
 
 def updateItemInDict(myItem):
-	data.displayText(data.listID)
-	data.displayText(myItem)
-	data.displayText(list(myItem.values())[0][1])
+	data.displayText("newobj : " + str(myItem))
 	data.arrayHTML.update(myItem)
 
-#myItem.keys()
+def deleteItemInDict(myItemKey):
+	data.arrayHTML.pop(myItemKey, None)
+
+
 """
 def updateItemInDict(myItem):
 	if list(myItem.values())[0][1] in data.listID:

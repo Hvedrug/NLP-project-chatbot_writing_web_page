@@ -10,33 +10,33 @@ import data
 
 def createParagraph(pID, pClass, pText):
 	#return a dictionary item 
-	item = {"p"+pID: ["p", pID, pClass, pText]}
+	item = {str(pID): ["p", pID, pClass, pText]}
 	return item
 
 def createHeader(hID, hClass, hSize, hText):
 	#return a dictionary item 
 	#check if the size is correct (h1, h2, ...)
 	if hSize in ["1", "2", "3", "4", "5", "6"]:
-		item = {"h"+hID: ["h", hID, hClass, hSize, hText]}
+		item = {str(hID): ["h", hID, hClass, hSize, hText]}
 	else:
-		item = {"err"+hID: ["err", hID+ "error : header size doesn't exist : "+hSize]}
+		item = {str(hID): ["err", hID+ "error : header size doesn't exist : "+hSize]}
 	return item
 
 def createLink(lID, lClass, lHref, lText):
 	#return a dictionary item
-	item = {"a"+lID: ["a", lID, lClass, lHref, lText]}
+	item = {str(lID): ["a", lID, lClass, lHref, lText]}
 	return item
 
 def createImage(imgID, imgClass, imgSRC, imgAlttext):
 	#return a dictionary item
-	item = {"i"+imgID: ["img", imgID, imgClass, imgSRC, imgAlttext]}
+	item = {str(imgID): ["img", imgID, imgClass, imgSRC, imgAlttext]}
 	return item
 
 def createOpenDiv(dID, dClass):
 	#return a dictionary item 
 	#global data.countOpenDiv 
 	data.countOpenDiv+=1
-	item = {"opd"+dID: ["opdiv", dID, dClass]}
+	item = {str(dID): ["div", dID, dClass]}
 	return item
 
 def createCloseDiv(dID):
@@ -44,9 +44,9 @@ def createCloseDiv(dID):
 	#global data.countOpenDiv
 	if data.countOpenDiv:
 		data.countOpenDiv-=1
-		item = {"cld"+dID: ["cldiv"]}
+		item = {str(dID): ["cldiv"]}
 	else:
-		item = {"err"+dID: ["err", dID+ "error : try to close div that doesn't exist : "]}
+		item = {str(dID): ["err", dID+ "error : try to close div that doesn't exist : "]}
 	return item
 
 def createHTML():
